@@ -15,15 +15,10 @@
 }
 
 .codeBlock {
-    background-color: rgb(11, 11, 11);
-    padding: 20px;
+    background-color: rgb(23, 23, 23);
+    padding: 10px;
     margin-top: 20px;
     margin-bottom: 20px;
-}
-
-.resCode {
-    white-space: pre-line;
-    color: lime;
 }
 
 .resTextUser {

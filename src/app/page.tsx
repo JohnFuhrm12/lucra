@@ -1,10 +1,10 @@
 'use client';
+import { useEffect, useState } from "react";
+
 import Image from "next/image";
 import styles from "./page.module.css";
 
 import { CircularProgress } from "@mui/material";
-import { useEffect, useState } from "react";
-
 import ModelTextInput from "./components/ModelTextInput";
 import CodeBlock from "./components/Codeblock";
 
@@ -28,12 +28,12 @@ export default function Home() {
         {chatHistory.length > 0 ? 
         chatHistory.map((res) => {
           if (res.isCode) {
-            const codeBlock = res.text;
+            const codeBlock:string = res.text;
 
             return (
               <div key={res.id}>
                 <h2 className={styles.resTextUser}>{res.user}</h2>
-                <div>
+                <div className={styles.codeBlock}>
                   <CodeBlock codeBlock={codeBlock}/>
                 </div>
               </div>

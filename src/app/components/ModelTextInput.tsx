@@ -32,6 +32,15 @@ const model = genAI.getGenerativeModel({ model: "gemini-pro", safetySettings});
 export default function ModelTextInput( {...props} ) {
     const [prompt, setPrompt] = useState('');
 
+    function removeLanguage(text:string) {
+        let arr = text.split(' ');
+        let str = arr[0];
+        let index = str.indexOf('\n');
+
+        arr[0] = str.substring(index + 1);
+        return arr.join(' ');
+    }
+
     const getModelTextResponse = async () => {
         const arr = props.chatHistory;
 
@@ -62,6 +71,7 @@ export default function ModelTextInput( {...props} ) {
 
         if (foundCode) {
             filteredText = filteredText.replace(/\`/g, '');
+            filteredText = removeLanguage(filteredText);
         }
 
         const modelRes = {
