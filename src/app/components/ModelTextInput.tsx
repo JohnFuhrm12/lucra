@@ -15,12 +15,52 @@ export default function ModelTextInput( {...props} ) {
 
     const getModelTextResponse = async () => {
         setPrompt('');
+        props.setLoading(true);
         const result = await model.generateContent(prompt);
         const response = await result.response;
         const text = response.text();
+        if (text) {
+            props.setLoading(false);
+        }
         console.log(text);
+        const arr = props.chatHistory;
+        arr.push(text);
+        props.setChatHistory(arr);
         props.setTextRes(text);
     } 
+
+    const startModelChat = async () => {
+        setPrompt('');
+        props.setLoading(true);
+
+        const chat = model.startChat({
+            history: [
+              {
+                role: "user",
+                parts: [{ text: "Hello, I want to start a chat!" }],
+              },
+              {
+                role: "model",
+                parts: [{ text: "Great to meet you. What would you like to know?" }],
+              },
+            ],
+            generationConfig: {
+              maxOutputTokens: 100,
+            },
+        });
+
+        const msg = prompt;
+        const result = await chat.sendMessage(msg);
+        const response = await result.response;
+        const text = response.text();
+
+        if (text) {
+            props.setLoading(false);
+        }
+
+        console.log(response);
+        props.setTextRes(text);
+    }
 
     return (
         <form onSubmit={getModelTextResponse}>
@@ -38,7 +78,8 @@ export default function ModelTextInput( {...props} ) {
         onKeyDown={(e) => {
             if (e.key === 'Enter') {
               e.preventDefault();
-              getModelTextResponse();
+             getModelTextResponse();
+             //startModelChat();
             }
         }}
          />          

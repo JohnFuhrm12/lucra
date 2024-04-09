@@ -2,8 +2,10 @@
     padding-inline: 15%;
 }
 
-.input {
-    border: solid 2px red;
+.chatResContainer {
+    margin-top: 60px;
+    overflow-y: scroll;
+    height: 60vh;
 }
 
 /* Mobile */
