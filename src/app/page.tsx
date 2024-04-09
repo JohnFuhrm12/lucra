@@ -1,14 +1,27 @@
+'use client';
 import Image from "next/image";
 import styles from "./page.module.css";
-import Button from '@mui/material/Button';
 
-import { ChatOpenAI } from "langchain/chat_models/openai";
+import ModelTextInput from "./components/ModelTextInput";
+import { useState } from "react";
+
 
 export default function Home() {
+  const [textRes, setTextRes] = useState('');
+
+  const props = {
+    textRes,
+    setTextRes
+  }
+
   return (
-    <main className={styles.main}>
-      <h2>INIT</h2>
-      <Button variant="contained">Click Me</Button>
+    <main className={styles.main}>   
+      <div id="chatRes">
+        {textRes.length > 0 ? 
+        <p>{textRes}</p>
+        : <></>}         
+      </div>    
+      <ModelTextInput {...props}/>
     </main>
   );
 }

@@ -1,10 +1,7 @@
-.main {
-    padding-inline: 15%;
+.textInput {
+    margin-top: 40px;
 }
 
-.input {
-    border: solid 2px red;
-}
 
 /* Mobile */
 @media (max-width: 700px) {
