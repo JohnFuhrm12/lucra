@@ -1,0 +1,33 @@
+/* Model Text Input */
+.textInput {
+    margin-top: 40px;
+}
+
+/* Chat Container */
+.chatResContainer {
+    margin-top: 60px;
+    overflow-y: auto;
+    height: 72vh;
+    padding-inline: 3%;
+}
+
+.resText {
+    margin-bottom: 20px;
+    white-space: pre-line;
+}
+
+.codeBlock {
+    background-color: rgb(23, 23, 23);
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.resTextUser {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.loader {
+    margin-top: 20px;
+}

@@ -1,13 +1,15 @@
 'use client';
-import { FormControl, TextField } from '@mui/material';
-import styles from "./TextInput.module.css";
+import { TextField } from '@mui/material';
+import styles from "./Components.module.css";
 
 import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/generative-ai";
 import { useState } from 'react';
 
-const API_KEY:string = process.env.NEXT_PUBLIC_GEMINI_API_KEY; 
+// Get Gemini from Google API Key
+const API_KEY:any = process.env.NEXT_PUBLIC_GEMINI_API_KEY; 
 const genAI = new GoogleGenerativeAI(API_KEY);
 
+// Remove safety settings from user input
 const safetySettings = [
   {
     category: HarmCategory.HARM_CATEGORY_HARASSMENT,
@@ -32,6 +34,7 @@ const model = genAI.getGenerativeModel({ model: "gemini-pro", safetySettings});
 export default function ModelTextInput( {...props} ) {
     const [prompt, setPrompt] = useState('');
 
+    // Remove the language identifier string at the top of a code block
     function removeLanguage(text:string) {
         let arr = text.split(' ');
         let str = arr[0];
@@ -41,6 +44,7 @@ export default function ModelTextInput( {...props} ) {
         return arr.join(' ');
     }
 
+    // Get and filter model response, add both user input and model response to chat history
     const getModelTextResponse = async () => {
         const arr = props.chatHistory;
 
@@ -83,7 +87,6 @@ export default function ModelTextInput( {...props} ) {
 
         arr.push(modelRes);
         props.setChatHistory(arr);
-        props.setTextRes(text);
     } 
 
     return (
