@@ -12,7 +12,7 @@ export default function CodeBlock( {codeBlock} ) {
 
     return (
         <pre>
-            <code>{codeBlock}</code>
+            <code data-testid="codeBlock">{codeBlock}</code>
         </pre>
     )
 }

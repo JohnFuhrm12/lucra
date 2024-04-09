@@ -67,7 +67,7 @@ export default function ChatContainer( {...props} ) {
                 return (
                 <div key={res.id}>
                     <h2 className={styles.resTextUser}>{res.user}</h2>
-                    <div data-testid="codeBlock" className={styles.codeBlock}>
+                    <div data-testid="containerCodeBlock" className={styles.codeBlock}>
                       <CodeBlock codeBlock={codeBlock}/>
                     </div>
                 </div>
@@ -81,7 +81,7 @@ export default function ChatContainer( {...props} ) {
             )
             })
             : <></>}
-            {props.loading ? <CircularProgress className={styles.loader}/> : <></>}         
+            {props.loading ? <CircularProgress data-testid="loader" className={styles.loader}/> : <></>}         
       </div>    
     )
 }

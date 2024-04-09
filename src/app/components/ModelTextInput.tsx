@@ -90,7 +90,7 @@ export default function ModelTextInput( {...props} ) {
     } 
 
     return (
-        <form onSubmit={getModelTextResponse}>
+        <form data-testid="modelTextInput" onSubmit={getModelTextResponse}>
         <TextField 
         inputProps={{ style: { color: "white" } }}
         multiline 
@@ -106,7 +106,7 @@ export default function ModelTextInput( {...props} ) {
         onKeyDown={(e) => {
             if (e.key === 'Enter') {
               e.preventDefault();
-             getModelTextResponse();
+              getModelTextResponse();
             }
         }}
          />          
