@@ -33,6 +33,7 @@ const model = genAI.getGenerativeModel({ model: "gemini-pro", safetySettings});
 
 export default function ModelTextInput( {...props} ) {
     const [prompt, setPrompt] = useState('');
+    const [inputError, setInputError] = useState(false);
 
     // Remove the language identifier string at the top of a code block
     function removeLanguage(text:string) {
@@ -89,8 +90,24 @@ export default function ModelTextInput( {...props} ) {
         props.setChatHistory(arr);
     } 
 
+    // Input settings already set, just check if not blank, blank inputs provoke a random response
+    function validateInput() {
+      let isValid = false;
+
+      if (prompt.length > 0) {
+        isValid = true;
+      } else {
+        isValid = false;
+        setInputError(true);
+      }
+
+      if (isValid) {
+        getModelTextResponse();
+      }
+    }
+
     return (
-        <form data-testid="modelTextInput" onSubmit={getModelTextResponse}>
+        <form data-testid="modelTextInput">
         <TextField 
         inputProps={{ style: { color: "white" } }}
         multiline 
@@ -100,13 +117,15 @@ export default function ModelTextInput( {...props} ) {
         label="Outlined" 
         variant="outlined"
         focused
+        error={inputError}
+        required
         placeholder='Message Gemini...'
         value={prompt}
-        onChange={(e) => setPrompt(e.target.value)}
+        onChange={(e) => {setPrompt(e.target.value); setInputError(false)}}
         onKeyDown={(e) => {
             if (e.key === 'Enter') {
               e.preventDefault();
-              getModelTextResponse();
+              validateInput();
             }
         }}
          />          
