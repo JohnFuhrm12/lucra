@@ -58,7 +58,7 @@ export default function ChatContainer( {...props} ) {
       })
 
     return (
-        <div id="chatContainer" className={styles.chatResContainer}>
+        <div data-testid="chatContainer" id="chatContainer" className={styles.chatResContainer}>
             {props.chatHistory.length > 0 ? 
             props.chatHistory.map((res) => {
             if (res.isCode) {
