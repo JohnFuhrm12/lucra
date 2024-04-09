@@ -16,10 +16,6 @@ export default function Home() {
     setLoading
   }
 
-  useEffect(() => {
-    console.log(chatHistory)
-  })
-
   return (
     <main className={styles.main}>   
       <ChatContainer {...props}/>
