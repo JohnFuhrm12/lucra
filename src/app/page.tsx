@@ -1,5 +1,5 @@
 'use client';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./page.module.css";
 
 import ChatContainer from "./components/ChatContainer";
@@ -15,6 +15,10 @@ export default function Home() {
     loading,
     setLoading
   }
+
+  useEffect(() => {
+    console.log(chatHistory)
+  })
 
   return (
     <main className={styles.main}>   

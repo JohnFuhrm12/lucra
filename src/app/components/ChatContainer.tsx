@@ -59,7 +59,7 @@ export default function ChatContainer( {...props} ) {
 
     return (
         <div data-testid="chatContainer" id="chatContainer" className={styles.chatResContainer}>
-            {props.chatHistory.length > 0 ? 
+            {props.chatHistory?.length > 0 ? 
             props.chatHistory.map((res) => {
             if (res.isCode) {
                 const codeBlock:string = res.text;
@@ -67,8 +67,8 @@ export default function ChatContainer( {...props} ) {
                 return (
                 <div key={res.id}>
                     <h2 className={styles.resTextUser}>{res.user}</h2>
-                    <div className={styles.codeBlock}>
-                    <CodeBlock codeBlock={codeBlock}/>
+                    <div data-testid="codeBlock" className={styles.codeBlock}>
+                      <CodeBlock codeBlock={codeBlock}/>
                     </div>
                 </div>
                 )
@@ -76,7 +76,7 @@ export default function ChatContainer( {...props} ) {
             return (
                 <div key={res.id}>
                 <h2 className={styles.resTextUser}>{res.user}</h2>
-                <p className={styles.resText}>{res.text}</p>
+                <p data-testid="chatPara" className={styles.resText}>{res.text}</p>
                 </div>
             )
             })
