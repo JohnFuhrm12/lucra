@@ -14,53 +14,35 @@ export default function ModelTextInput( {...props} ) {
     const [prompt, setPrompt] = useState('');
 
     const getModelTextResponse = async () => {
+        const arr = props.chatHistory;
+
+        const userRes = {
+            text: prompt,
+            user: 'You: ',
+            id: Math.floor(Math.random() * 1000000000)
+        }
+
+        arr.push(userRes);
         setPrompt('');
         props.setLoading(true);
         const result = await model.generateContent(prompt);
         const response = await result.response;
         const text = response.text();
+
         if (text) {
             props.setLoading(false);
         }
-        console.log(text);
-        const arr = props.chatHistory;
-        arr.push(text);
+
+        const modelRes = {
+            text: text,
+            user: 'Gemini: ',
+            id: Math.floor(Math.random() * 1000000000)
+        }
+
+        arr.push(modelRes);
         props.setChatHistory(arr);
         props.setTextRes(text);
     } 
-
-    const startModelChat = async () => {
-        setPrompt('');
-        props.setLoading(true);
-
-        const chat = model.startChat({
-            history: [
-              {
-                role: "user",
-                parts: [{ text: "Hello, I want to start a chat!" }],
-              },
-              {
-                role: "model",
-                parts: [{ text: "Great to meet you. What would you like to know?" }],
-              },
-            ],
-            generationConfig: {
-              maxOutputTokens: 100,
-            },
-        });
-
-        const msg = prompt;
-        const result = await chat.sendMessage(msg);
-        const response = await result.response;
-        const text = response.text();
-
-        if (text) {
-            props.setLoading(false);
-        }
-
-        console.log(response);
-        props.setTextRes(text);
-    }
 
     return (
         <form onSubmit={getModelTextResponse}>
@@ -79,7 +61,6 @@ export default function ModelTextInput( {...props} ) {
             if (e.key === 'Enter') {
               e.preventDefault();
              getModelTextResponse();
-             //startModelChat();
             }
         }}
          />          
