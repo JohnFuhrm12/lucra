@@ -1,15 +1,21 @@
 .main {
-    padding-inline: 15%;
+    padding-inline: 20%;
 }
 
 .chatResContainer {
     margin-top: 60px;
-    overflow-y: scroll;
-    height: 60vh;
+    overflow-y: auto;
+    height: 72vh;
+    padding-inline: 3%;
 }
 
 .resText {
     margin-bottom: 20px;
+}
+
+.resTextUser {
+    font-size: 18px;
+    margin-bottom: 10px;
 }
 
 .loader {
@@ -18,7 +24,9 @@
 
 /* Mobile */
 @media (max-width: 700px) {
-
+    .main {
+        padding-inline: 5%;
+    }
 }
 
 /* Tablet and Smaller Desktop */

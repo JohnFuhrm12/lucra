@@ -2,13 +2,32 @@
 import { FormControl, TextField } from '@mui/material';
 import styles from "./TextInput.module.css";
 
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/generative-ai";
 import { useState } from 'react';
 
 const API_KEY:string = process.env.NEXT_PUBLIC_GEMINI_API_KEY; 
 const genAI = new GoogleGenerativeAI(API_KEY);
 
-const model = genAI.getGenerativeModel({ model: "gemini-pro"});
+const safetySettings = [
+  {
+    category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+    threshold: HarmBlockThreshold.BLOCK_NONE,
+  },
+  {
+    category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+    threshold: HarmBlockThreshold.BLOCK_NONE,
+  },
+  {
+    category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+    threshold: HarmBlockThreshold.BLOCK_NONE,
+  },
+  {
+    category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+    threshold: HarmBlockThreshold.BLOCK_NONE,
+  },
+];
+
+const model = genAI.getGenerativeModel({ model: "gemini-pro", safetySettings});
 
 export default function ModelTextInput( {...props} ) {
     const [prompt, setPrompt] = useState('');
@@ -18,14 +37,14 @@ export default function ModelTextInput( {...props} ) {
 
         const userRes = {
             text: prompt,
-            user: 'You: ',
+            user: 'You',
             id: Math.floor(Math.random() * 1000000000)
         }
 
         arr.push(userRes);
         setPrompt('');
         props.setLoading(true);
-        const result = await model.generateContent(prompt);
+        const result = await model.generateContentStream(prompt);
         const response = await result.response;
         const text = response.text();
 
@@ -35,7 +54,7 @@ export default function ModelTextInput( {...props} ) {
 
         const modelRes = {
             text: text,
-            user: 'Gemini: ',
+            user: 'Gemini',
             id: Math.floor(Math.random() * 1000000000)
         }
 
@@ -55,6 +74,7 @@ export default function ModelTextInput( {...props} ) {
         label="Outlined" 
         variant="outlined"
         focused
+        placeholder='Message Gemini...'
         value={prompt}
         onChange={(e) => setPrompt(e.target.value)}
         onKeyDown={(e) => {

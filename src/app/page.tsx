@@ -27,7 +27,10 @@ export default function Home() {
         {chatHistory.length > 0 ? 
         chatHistory.map((res) => {
           return (
-            <p className={styles.resText} key={res.id}><span>{res.user}</span>{res.text}</p>
+            <div key={res.id}>
+              <h2 className={styles.resTextUser}>{res.user}</h2>
+              <p className={styles.resText}>{res.text}</p>
+            </div>
           )
         })
         : <></>}
