@@ -52,9 +52,22 @@ export default function ModelTextInput( {...props} ) {
             props.setLoading(false);
         }
 
+        let filteredText = text;
+
+        // Filter out double asterisks, replace single asterisks with •
+        filteredText= text.replace(/\*\*/g, '');
+        filteredText = filteredText.replace(/\*/g, '•');
+
+        let foundCode = filteredText.search('`') !== -1;
+
+        if (foundCode) {
+            filteredText = filteredText.replace(/\`/g, '');
+        }
+
         const modelRes = {
-            text: text,
+            text: filteredText,
             user: 'Gemini',
+            isCode: foundCode,
             id: Math.floor(Math.random() * 1000000000)
         }
 

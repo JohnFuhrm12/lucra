@@ -11,6 +11,19 @@
 
 .resText {
     margin-bottom: 20px;
+    white-space: pre-line;
+}
+
+.codeBlock {
+    background-color: rgb(11, 11, 11);
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.resCode {
+    white-space: pre-line;
+    color: lime;
 }
 
 .resTextUser {
