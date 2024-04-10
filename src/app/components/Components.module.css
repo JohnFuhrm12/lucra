@@ -7,7 +7,7 @@
 .chatResContainer {
     margin-top: 60px;
     overflow-y: auto;
-    height: 70vh;
+    height: 72vh;
     padding-inline: 3%;
 }
 
@@ -30,4 +30,11 @@
 
 .loader {
     margin-top: 20px;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+    .chatResContainer {
+        height: 68vh;
+    }
 }
