@@ -31,3 +31,6 @@ Support for creating code blocks for programming related prompts with syntax hig
 
 Gemini is a family of AI language model developed by Google DeepMind. 
 It was announced in 2023 and is meant to be direct competition for Open AI's Chat GPT-4.
+
+# Lucra Gemini
+![Gemini](https://github.com/JohnFuhrm12/lucra/assets/61069716/f99f0242-393e-4743-ace1-e74dd7d44f6e)
