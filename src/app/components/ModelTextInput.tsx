@@ -114,7 +114,7 @@ export default function ModelTextInput( {...props} ) {
         fullWidth 
         className={styles.textInput} 
         id="outlined-basic" 
-        label="Outlined" 
+        label="Gemini" 
         variant="outlined"
         focused
         error={inputError}
