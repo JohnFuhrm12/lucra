@@ -7,7 +7,7 @@ export default function CodeBlock( {codeBlock} ) {
     // Auto syntax highlight code blocks
     useEffect(() => {
         const nodes:any = document.querySelectorAll('pre code');
-        nodes.forEach(node => hljs.highlightElement(node));
+        nodes.forEach(node => hljs.highlightBlock(node));
     }, []);
 
     return (
