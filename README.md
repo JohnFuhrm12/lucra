@@ -16,8 +16,8 @@ npm install
 Create a .env file and add: NEXT_PUBLIC_GEMINI_API_KEY = *Place Your Gemini API Key Here*
 
 # Run The App
-npm run dev
-Open http://localhost:3000 in your browser
+1. npm run dev
+2. Open http://localhost:3000 in your browser
 
 # Project Features
 Utilizes the Gemini LLM from Google to generate AI responses from user input. 
