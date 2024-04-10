@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import hljs from 'highlight.js';
+import hljs from 'highlight.js/lib/common';
 import 'highlight.js/styles/stackoverflow-dark.css';
 
 export default function CodeBlock( {codeBlock} ) {
